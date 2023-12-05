@@ -26,32 +26,51 @@ function displayMap(data) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(myMap);
 
-    // Loop through the countries array, and create one marker for each country object.
-    for (let i = 0; i < countries.length; i++) {
+    const dataPoints = data.features;
 
-        // Conditionals for country gdp_pc
+    // Loop through the countries array, and create one marker for each country object.
+    for (let i = 0; i < dataPoints.length; i++) {
+        let earthquake = dataPoints[i];
+        let properties = earthquake.properties;
+        let mag = properties.mag;
+        let geometry = earthquake.geometry;
+        let lng = geometry.coordinates[0];
+        let lat = geometry.coordinates[1];
+        let depth = geometry.coordinates[2];
+
+
+        // Conditionals for depth
         let color = "";
-        if (countries[i].gdp_pc > 100000) {
+        if (depth > 100) {
+            color = "brown";
+        }
+        else if (depth > 30) {
+            color = "red";
+        }
+        else if (depth > 10) {
+            color = "orange";
+        }
+        else if (depth > 5) {
             color = "yellow";
         }
-        else if (countries[i].gdp_pc > 75000) {
-            color = "blue";
-        }
-        else if (countries[i].gdp_pc > 50000) {
+        else if (depth > 1) {
             color = "green";
         }
         else {
-            color = "violet";
+            color = "blue";
         }
 
         // Add circles to the map.
-        L.circle(countries[i].location, {
+        L.circle([lat, lng], {
             fillOpacity: 0.75,
             color: "white",
+            weight: 1,
             fillColor: color,
             // Adjust the radius.
-            radius: Math.sqrt(countries[i].gdp_pc) * 500
-        }).bindPopup(`<h1>${countries[i].name}</h1> <hr> <h3>GDP Per Capita (USD): ${countries[i].gdp_pc}</h3>`).addTo(myMap);
+            radius: properties.mag * 20000
+        }).bindPopup(`<h2>${properties.place}</h2><hr><h3>Magnitude: ${mag}</h3><h3>Depth: ${depth}</h3>`).addTo(myMap);
+        
     }
+
 
 }
