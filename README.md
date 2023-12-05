@@ -42,3 +42,9 @@ Import and visualize the data by doing the following:
 ---
 
 ## References
+
+Dataset created by the [United States Geological Survey](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php).
+
+Challenge instructions and starter files, as well as some code sections that were adapted from the UofT SCS EdX Data Bootcamp class activities:
+
+© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
