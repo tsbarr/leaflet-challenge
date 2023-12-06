@@ -6,7 +6,7 @@ The data used for this challenge is that of all the earthquakes that have happen
 
 The map shows all earthquakes with a circle marker size that scales with magnitude and color depending on the depth of the earthquake. The tooptip shows the location name, maginitude and depth. 
 
-**[Visualize resulting map here.](Leaflet-Part-1/index.html)**
+**[Visualize resulting map here.](https://tsbarr.github.io/leaflet-challenge/Leaflet-Part-1/index.html)**
 
 ---
 
